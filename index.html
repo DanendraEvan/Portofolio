@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Danendra Evan Wicaksono</title>
+<meta name="description" content="Portofolio Danendra Evan Wicaksono — Web Development, AI & Cloud." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Cinzel+Decorative:wght@400;700;900&family=Michroma&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.11"></script>
+<style>
+:root {
+  --pad-x: clamp(1.25rem, 4.5vw, 5rem);
+  --pad-y: clamp(1rem, 3vh, 4rem);
+  --header-pt: clamp(1.25rem, 2.5vh, 2.5rem);
+  --gap-nav: clamp(1rem, 2.2vw, 2.25rem);
+  --logo: clamp(0.35rem, 0.2vw + 0.9rem, 1.1rem);
+  --logo-deg: clamp(0.65rem, 0.1vw + 0.1rem, 0.4rem);
+  --nav: clamp(0.65rem, 0.35vw + 0.5rem, 0.875rem);
+  --headline: clamp(2.15rem, 4.5vw + 0.75rem, 5.25rem);
+  --body: clamp(0.7rem, 0.35vw + 0.55rem, 0.9rem);
+  --micro: clamp(0.55rem, 0.25vw + 0.45rem, 0.7rem);
+  --btn-px: clamp(1.15rem, 1.4vw, 1.75rem);
+  --btn-py: clamp(0.6rem, 0.9vh, 0.85rem);
+  --btn-gap: clamp(0.75rem, 1vw, 1.1rem);
+  --feature-pad: clamp(1rem, 1.5vw, 1.75rem);
+  --feature-min: clamp(13rem, 18vw, 20rem);
+  --globe: clamp(2.25rem, 2.5vw + 1rem, 3.25rem);
+  --corner: clamp(0.65rem, 0.4vw + 0.4rem, 0.95rem);
+  --icon: clamp(1rem, 0.6vw + 0.7rem, 1.35rem);
+  --drawer-pad: clamp(1.25rem, 2.5vw, 2.25rem);
+  --drawer-max: clamp(18rem, 28vw, 28rem);
+  --section-gap: clamp(0.75rem, 1.5vh, 1.5rem);
+  --main-py: clamp(1.25rem, 4vh, 4rem);
+}
+.font-cinzel { font-family: 'Cinzel Decorative', serif; }
+.font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif; }
+body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+.ic { width: var(--icon); height: var(--icon); }
+.corner { width: var(--corner); height: var(--corner); }
+.ds-micro { font-size: var(--micro); letter-spacing: 0.18em; }
+.ds-body { font-size: var(--body); }
+.row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: var(--section-gap); border-bottom: 1px solid #e5e7eb; }
+/* Live preview proyek: di layar sentuh iframe tidak menangkap gestur, supaya halaman tetap bisa di-scroll */
+@media (hover: none) { .live-frame { pointer-events: none; } }
+/* Tab proyek Web / IoT */
+.proj-tab { border: 1px solid rgba(255,255,255,0.3); color: #d1d5db; background: transparent; }
+.proj-tab:hover { color: #fff; border-color: #fff; }
+.proj-tab[aria-selected="true"] { background: #fff; color: #000; border-color: #fff; }
+</style>
+</head>
+<body class="bg-black text-white antialiased selection:bg-white selection:text-black font-jakarta">
+
+<!-- Background image (Fixed di belakang seluruh halaman) -->
+<div class="fixed inset-0 z-0 pointer-events-none bg-black bg-cover bg-no-repeat" style="background-image:url('knight.jpg');background-position:68% center"></div>
+
+<!-- Parallax grid (desktop only) -->
+<div id="grid" class="hidden lg:block fixed inset-0 pointer-events-none z-0 overflow-hidden">
+  <svg width="100%" height="100%" style="opacity:0.10">
+    <defs>
+      <pattern id="gp" patternUnits="userSpaceOnUse">
+        <path id="gpath" fill="none" stroke="#64748b" stroke-width="0.6"></path>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#gp)"></rect>
+  </svg>
+</div>
+
+<!-- Header Navigasi Fixed -->
+<header class="fixed top-0 left-0 right-0 z-30 flex items-center justify-between bg-gradient-to-b from-black/80 via-black/40 to-transparent backdrop-blur-[2px]" style="padding-inline:var(--pad-x);padding-top:var(--header-pt);padding-bottom:var(--section-gap)">
+  <button id="logo" class="font-cinzel font-black hover:opacity-80 transition-opacity cursor-pointer flex items-start" style="font-size:var(--logo);letter-spacing:0.15em">
+    Dew<span class="-mt-0.5 ml-0.5" style="font-size:var(--logo-deg)">˚</span>
+  </button>
+  <nav class="flex flex-wrap justify-end items-center font-medium" style="font-size:var(--nav);letter-spacing:0.2em;gap:var(--gap-nav)">
+    <button id="navhome" class="uppercase hover:opacity-50 transition-opacity cursor-pointer">Beranda</button>
+    <a href="#about-section" class="uppercase hover:opacity-50 transition-opacity cursor-pointer">Tentang Saya</a>
+    <a href="#projects-section" class="uppercase hover:opacity-50 transition-opacity cursor-pointer">Proyek</a>
+    <a href="#experience-section" class="uppercase hover:opacity-50 transition-opacity cursor-pointer">Pengalaman</a>
+    <a href="#contact-section" class="uppercase hover:opacity-50 transition-opacity cursor-pointer">Kontak</a>
+  </nav>
+</header>
+
+<!-- SECTION 1: HERO -->
+<div id="stage" class="min-h-screen text-white font-jakarta flex flex-col justify-between relative z-10" style="padding-top:calc(var(--header-pt) + 3.5rem)">
+  <main id="hero" class="relative z-10 flex-1 flex flex-col lg:flex-row lg:justify-between gap-10" style="padding-inline:var(--pad-x);padding-block:var(--main-py)">
+    <div class="flex flex-col justify-center" style="gap:var(--section-gap)">
+      <div id="namegrp" class="flex flex-col" style="gap:var(--section-gap);transform:translateY(-40px)">
+        <span data-corner="tl"></span>
+        <h1 class="font-cinzel font-black uppercase" style="font-size:var(--headline);letter-spacing:0.08em;line-height:1.05">
+          <span class="block w-fit bg-white text-black px-2">Danendra</span>
+          <span class="block w-fit bg-white text-black px-2">Evan</span>
+          <span class="block w-fit bg-white text-black px-2">Wicaksono</span>
+        </h1>
+        <span data-corner="bl"></span>
+      </div>
+      <div class="flex flex-wrap items-center gap-4" style="transform:translateY(-30px)">
+        <a href="#about-section" class="group self-start inline-flex items-center uppercase bg-white text-black font-semibold rounded-md hover:bg-transparent hover:text-white border border-white transition-colors cursor-pointer" style="font-size:var(--body);letter-spacing:0.18em;padding:var(--btn-py) var(--btn-px);gap:var(--btn-gap)">
+          JELAJAHI PROFIL
+          <svg class="ic transition-transform group-hover:translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+        </a>
+        <a href="#projects-section" class="group self-start inline-flex items-center uppercase border border-gray-400 rounded-md hover:bg-white hover:text-black hover:border-white transition-colors cursor-pointer" style="font-size:var(--body);letter-spacing:0.18em;padding:var(--btn-py) var(--btn-px);gap:var(--btn-gap)">
+          ARSIP KARYA
+          <svg class="ic transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="relative self-start lg:self-end flex items-center" style="min-width:var(--feature-min);padding:var(--feature-pad);gap:var(--btn-gap)">
+      <span data-corner="tl" class="absolute top-0 left-0"></span>
+      <span data-corner="tr" class="absolute top-0 right-0"></span>
+      <span data-corner="bl" class="absolute bottom-0 left-0"></span>
+      <span data-corner="br" class="absolute bottom-0 right-0"></span>
+      <span id="globe" class="shrink-0"></span>
+      <p class="font-semibold uppercase bg-white text-black px-2 py-0.5" style="font-size:var(--body);letter-spacing:0.18em">Ksatria Kuat Tak Meninggalkan Pertempuran.<br /></p>
+    </div>
+  </main>
+
+  <!-- Indikator Scroll -->
+  <div class="relative z-10 flex flex-col items-center pb-6 opacity-75">
+    <span class="uppercase ds-micro tracking-widest mb-2">Scroll ke bawah</span>
+    <div class="w-px h-10 bg-gradient-to-b from-white to-transparent"></div>
+  </div>
+</div>
+
+<!-- SECTION 2: TENTANG SAYA (ABOUT) — Tanpa bagian Arsenal Teknologi & Sorotan Perjalanan -->
+<section id="about-section" class="relative z-20 py-24" style="padding-inline:var(--pad-x)">
+  <div class="max-w-6xl mx-auto w-full bg-black/75 backdrop-blur-md border border-white/15 p-8 md:p-14 lg:p-16 relative">
+    <span data-corner="tl" class="absolute top-0 left-0"></span>
+    <span data-corner="tr" class="absolute top-0 right-0"></span>
+    <span data-corner="bl" class="absolute bottom-0 left-0"></span>
+    <span data-corner="br" class="absolute bottom-0 right-0"></span>
+
+    <!-- Header Section -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-white/15 pb-8 mb-10 gap-6">
+      <div>
+        <p class="ds-micro uppercase text-gray-400 mb-2">01 // PROFIL &amp; IDENTITAS</p>
+        <h2 class="font-cinzel font-black uppercase text-3xl md:text-5xl tracking-wider">
+          <span class="bg-white text-black px-3 py-0.5">Tentang Saya</span>
+        </h2>
+      </div>
+      <p class="ds-micro uppercase text-gray-300 tracking-widest">
+        Surakarta, Indonesia &bull; Web, AI &amp; IoT Enthusiast
+      </p>
+    </div>
+
+    <!-- Konten Utama Tentang Saya (Full-width tanpa bagian kanan yang dihapus) -->
+    <div class="space-y-6">
+      <p class="text-lg md:text-xl font-medium leading-relaxed text-gray-100">
+        Halo! Saya <span class="bg-white text-black font-bold px-1.5">Danendra Evan Wicaksono</span>, seorang pengembang teknologi dan pembelajar aktif yang berfokus pada pengembangan web modern, eksplorasi kecerdasan buatan (AI), serta sistem berbasis Cloud &amp; IoT.
+      </p>
+      <p class="ds-body text-gray-300 leading-relaxed">
+        Layaknya seorang ksatria yang terus mengasah pedangnya di medan tempur, saya senang memecahkan masalah kompleks melalui baris kode, membangun aplikasi yang fungsional, serta mengikuti berbagai kompetisi teknologi dan *hackathon* untuk menguji batas kemampuan saya.
+      </p>
+
+      <!-- Kotak Filosofi / Highlight -->
+      <div class="border-l-2 border-white pl-5 py-2 my-6 bg-white/5">
+        <p class="font-cinzel text-sm md:text-base uppercase tracking-wider text-white">
+          "Teknologi bukan sekadar baris kode, melainkan seni merancang solusi yang tangguh dan berdampak."
+        </p>
+      </div>
+
+      <!-- Fokus Utama -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+        <div class="border border-white/15 p-5 bg-white/[0.03] hover:bg-white/[0.08] transition-colors">
+          <p class="ds-micro text-gray-400 uppercase mb-1">FOKUS 01</p>
+          <p class="font-semibold uppercase text-sm tracking-wider">Full-Stack Web</p>
+          <p class="text-xs text-gray-400 mt-1">Antarmuka interaktif, cepat, &amp; responsif.</p>
+        </div>
+        <div class="border border-white/15 p-5 bg-white/[0.03] hover:bg-white/[0.08] transition-colors">
+          <p class="ds-micro text-gray-400 uppercase mb-1">FOKUS 02</p>
+          <p class="font-semibold uppercase text-sm tracking-wider">AI &amp; Data</p>
+          <p class="text-xs text-gray-400 mt-1">Integrasi model AI, analitik data, &amp; otomasi.</p>
+        </div>
+        <div class="border border-white/15 p-5 bg-white/[0.03] hover:bg-white/[0.08] transition-colors">
+          <p class="ds-micro text-gray-400 uppercase mb-1">FOKUS 03</p>
+          <p class="font-semibold uppercase text-sm tracking-wider">Cloud &amp; Cyber</p>
+          <p class="text-xs text-gray-400 mt-1">Infrastruktur cloud, IoT, &amp; keamanan sistem.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: PROYEK (PROJECTS) -->
+<section id="projects-section" class="relative z-20 py-24" style="padding-inline:var(--pad-x)">
+  <div class="max-w-6xl mx-auto w-full bg-black/75 backdrop-blur-md border border-white/15 p-8 md:p-14 lg:p-16 relative">
+    <span data-corner="tl" class="absolute top-0 left-0"></span>
+    <span data-corner="tr" class="absolute top-0 right-0"></span>
+    <span data-corner="bl" class="absolute bottom-0 left-0"></span>
+    <span data-corner="br" class="absolute bottom-0 right-0"></span>
+
+    <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-white/15 pb-8 mb-10 gap-6">
+      <div>
+        <p class="ds-micro uppercase text-gray-400 mb-2">02 // ARSIP KARYA &amp; EKSPERIMEN</p>
+        <h2 class="font-cinzel font-black uppercase text-3xl md:text-5xl tracking-wider">
+          <span class="bg-white text-black px-3 py-0.5">Proyek</span>
+        </h2>
+      </div>
+      <p class="ds-micro uppercase text-gray-300 tracking-widest">
+        Inovasi Terpilih &bull; 2025 — 2026
+      </p>
+    </div>
+
+    <!-- TAB PROYEK: WEB / IOT -->
+    <div class="flex flex-wrap gap-2 mb-8" role="tablist" aria-label="Kategori proyek">
+      <button type="button" role="tab" aria-selected="true" data-proj-tab="web" class="proj-tab px-5 py-2 ds-micro uppercase font-semibold tracking-widest cursor-pointer transition-colors">Web</button>
+      <button type="button" role="tab" aria-selected="false" data-proj-tab="iot" class="proj-tab px-5 py-2 ds-micro uppercase font-semibold tracking-widest cursor-pointer transition-colors">IoT</button>
+      <button type="button" role="tab" aria-selected="false" data-proj-tab="game" class="proj-tab px-5 py-2 ds-micro uppercase font-semibold tracking-widest cursor-pointer transition-colors">Game</button>
+    </div>
+
+    <!-- PANEL WEB -->
+    <div data-proj-panel="web">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Live: StellarX / Perubahan Iklim WebAR -->
+      <article class="group border border-white/20 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex flex-col justify-between overflow-hidden">
+        <div>
+          <div class="relative w-full h-56 bg-zinc-950 border-b border-white/15 overflow-hidden">
+            <span class="absolute top-2.5 left-2.5 z-20 px-2 py-0.5 text-[10px] uppercase tracking-wider font-semibold bg-white text-black">Live Web</span>
+            <iframe class="live-frame absolute inset-0 w-full h-full border-0 bg-white" src="https://perubahaniklim.vercel.app/index.html" title="Pratinjau StellarX Earth AR Scanner" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="ds-micro uppercase px-2.5 py-1 border border-white/40 text-white">WEBAR &amp; EDUKASI</span>
+              <span class="ds-micro text-gray-400">2026</span>
+            </div>
+            <h3 class="font-cinzel font-bold text-xl uppercase tracking-wider mb-2">StellarX Earth AR</h3>
+            <p class="ds-body text-gray-300 leading-relaxed mb-2">
+              Arahkan kamera ke marker dan lihat planet Bumi 3D muncul di depanmu, lalu putar, geser, dan perbesar langsung dari layar.
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center justify-between mx-6 mb-6 pt-4 border-t border-white/10 text-xs text-gray-400 uppercase tracking-wider">
+          <span>WebAR &bull; 3D &bull; Edukasi</span>
+          <a href="https://perubahaniklim.vercel.app/index.html" target="_blank" rel="noopener noreferrer" class="text-white hover:opacity-70 transition-opacity cursor-pointer">Buka Situs &nearr;</a>
+        </div>
+      </article>
+      <!-- Live: DentifyKids -->
+      <article class="group border border-white/20 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex flex-col justify-between overflow-hidden">
+        <div>
+          <div class="relative w-full h-56 bg-zinc-950 border-b border-white/15 overflow-hidden">
+            <span class="absolute top-2.5 left-2.5 z-20 px-2 py-0.5 text-[10px] uppercase tracking-wider font-semibold bg-white text-black">Live Web</span>
+            <iframe class="live-frame absolute inset-0 w-full h-full border-0 bg-white" src="https://dentify-kids.web.app/" title="Pratinjau DentifyKids" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <div class="flex items-center gap-1.5">
+                <span class="ds-micro uppercase px-2.5 py-1 bg-white text-black font-semibold">WEB</span>
+                <span class="ds-micro uppercase px-2.5 py-1 border border-white/40 text-white">IOT</span>
+              </div>
+              <span class="ds-micro text-gray-400">2026</span>
+            </div>
+            <h3 class="font-cinzel font-bold text-xl uppercase tracking-wider mb-2">DentifyKids</h3>
+            <p class="ds-body text-gray-300 leading-relaxed mb-2">
+              Sikat gigi pintar berbasis AI dengan kamera XIAO ESP32S3, sensor IMU, dan aplikasi edukasi interaktif untuk anak, dengan analisis AI yang transparan (XAI).
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center justify-between mx-6 mb-6 pt-4 border-t border-white/10 text-xs text-gray-400 uppercase tracking-wider">
+          <span>AI &bull; IoT &bull; PWA</span>
+          <a href="https://dentify-kids.web.app/" target="_blank" rel="noopener noreferrer" class="text-white hover:opacity-70 transition-opacity cursor-pointer">Buka Situs &nearr;</a>
+        </div>
+      </article>
+      <!-- Live: VoxSilva -->
+      <article class="group border border-white/20 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex flex-col justify-between overflow-hidden">
+        <div>
+          <div class="relative w-full h-56 bg-zinc-950 border-b border-white/15 overflow-hidden">
+            <span class="absolute top-2.5 left-2.5 z-20 px-2 py-0.5 text-[10px] uppercase tracking-wider font-semibold bg-white text-black">Live Web</span>
+            <iframe class="live-frame absolute inset-0 w-full h-full border-0 bg-white" src="https://vox-silva.web.app/" title="Pratinjau VoxSilva" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <div class="flex items-center gap-1.5">
+                <span class="ds-micro uppercase px-2.5 py-1 bg-white text-black font-semibold">WEB</span>
+                <span class="ds-micro uppercase px-2.5 py-1 border border-white/40 text-white">IOT</span>
+              </div>
+              <span class="ds-micro text-gray-400">2026</span>
+            </div>
+            <h3 class="font-cinzel font-bold text-xl uppercase tracking-wider mb-2">VoxSilva</h3>
+            <p class="ds-body text-gray-300 leading-relaxed mb-2">
+              Smart Forest Monitoring System: aplikasi web untuk memantau kondisi hutan secara cerdas.
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center justify-between mx-6 mb-6 pt-4 border-t border-white/10 text-xs text-gray-400 uppercase tracking-wider">
+          <span>Monitoring &bull; Web App</span>
+          <a href="https://vox-silva.web.app/" target="_blank" rel="noopener noreferrer" class="text-white hover:opacity-70 transition-opacity cursor-pointer">Buka Situs &nearr;</a>
+        </div>
+      </article>
+      <!-- AI Project Planner -->
+      <article class="group border border-white/20 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex flex-col justify-between overflow-hidden">
+        <div>
+          <div class="relative w-full h-56 bg-zinc-950 border-b border-white/15 overflow-hidden">
+            <img src="aiprojectplanner.jpeg" alt="Tampilan beranda AI Project Planner: statistik hari aktif, menu AI Planner dan Forum Guru, serta berita pendidikan" class="absolute inset-0 w-full h-full object-cover object-top" loading="lazy" decoding="async" />
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="ds-micro uppercase px-2.5 py-1 bg-white text-black font-semibold">WEB &amp; AI PLATFORM</span>
+              <span class="ds-micro text-gray-400">2026</span>
+            </div>
+            <h3 class="font-cinzel font-bold text-xl uppercase tracking-wider mb-2">AI Project Planner</h3>
+            <p class="ds-body text-gray-300 leading-relaxed mb-2">
+              Platform perencanaan dan manajemen proyek terintegrasi berbasis AI (`aiprojectplanner.space`) untuk menyusun jadwal, ruang lingkup, serta dokumentasi teknis secara terstruktur.
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center justify-between mx-6 mb-6 pt-4 border-t border-white/10 text-xs text-gray-400 uppercase tracking-wider">
+          <span>Web App &bull; Cloud &bull; AI</span>
+          <span class="text-white group-hover:translate-x-1 transition-transform">&rarr;</span>
+        </div>
+      </article>
+
+      <!-- Live: AI Project Planner Admin Dashboard -->
+      <article class="group border border-white/20 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex flex-col justify-between overflow-hidden">
+        <div>
+          <div class="relative w-full h-56 bg-zinc-950 border-b border-white/15 overflow-hidden">
+            <span class="absolute top-2.5 left-2.5 z-20 px-2 py-0.5 text-[10px] uppercase tracking-wider font-semibold bg-white text-black">Live Web</span>
+            <iframe class="live-frame absolute inset-0 w-full h-full border-0 bg-white" src="https://mersiflab-63b3c.web.app/admin-dashboard" title="Pratinjau AI Project Planner Admin Dashboard" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="ds-micro uppercase px-2.5 py-1 bg-white text-black font-semibold">WEB &amp; AI</span>
+              <span class="ds-micro text-gray-400">2026</span>
+            </div>
+            <h3 class="font-cinzel font-bold text-xl uppercase tracking-wider mb-2">Planner Admin Dashboard</h3>
+            <p class="ds-body text-gray-300 leading-relaxed mb-2">
+              Dashboard admin AI Project Planner untuk pendidik: ringkasan sistem, pengelola materi, dan ekstraktor teks PDF yang terhubung ke Firebase.
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center justify-between mx-6 mb-6 pt-4 border-t border-white/10 text-xs text-gray-400 uppercase tracking-wider">
+          <span>Dashboard &bull; Firebase &bull; Admin</span>
+          <a href="https://mersiflab-63b3c.web.app/admin-dashboard" target="_blank" rel="noopener noreferrer" class="text-white hover:opacity-70 transition-opacity cursor-pointer">Buka Situs &nearr;</a>
+        </div>
+      </article>
+
+      <!-- Live: Smart Hidroponik -->
+      <article class="group border border-white/20 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex flex-col justify-between overflow-hidden">
+        <div>
+          <div class="relative w-full h-56 bg-zinc-950 border-b border-white/15 overflow-hidden">
+            <span class="absolute top-2.5 left-2.5 z-20 px-2 py-0.5 text-[10px] uppercase tracking-wider font-semibold bg-white text-black">Live Web</span>
+            <iframe class="live-frame absolute inset-0 w-full h-full border-0 bg-white" src="https://smarthidroponikmerax.streamlit.app/" title="Pratinjau Smart Hidroponik" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <div class="flex items-center gap-1.5">
+                <span class="ds-micro uppercase px-2.5 py-1 bg-white text-black font-semibold">WEB</span>
+                <span class="ds-micro uppercase px-2.5 py-1 border border-white/40 text-white">IOT</span>
+              </div>
+              <span class="ds-micro text-gray-400">SIC BATCH 5</span>
+            </div>
+            <h3 class="font-cinzel font-bold text-xl uppercase tracking-wider mb-2">Smart Hidroponik</h3>
+            <p class="ds-body text-gray-300 leading-relaxed mb-2">
+              Sistem pemantauan berbasis Internet of Things (IoT) yang terhubung ke antarmuka web real-time untuk membaca sensor, memvisualisasikan metrik, dan mengontrol perangkat.
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center justify-between mx-6 mb-6 pt-4 border-t border-white/10 text-xs text-gray-400 uppercase tracking-wider">
+          <span>IoT &bull; Realtime &bull; Dashboard</span>
+          <a href="https://smarthidroponikmerax.streamlit.app/" target="_blank" rel="noopener noreferrer" class="text-white hover:opacity-70 transition-opacity cursor-pointer">Buka Situs &nearr;</a>
+        </div>
+      </article>
+
+      <!-- Live: SpiderSense -->
+      <article class="group border border-white/20 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex flex-col justify-between overflow-hidden">
+        <div>
+          <div class="relative w-full h-56 bg-zinc-950 border-b border-white/15 overflow-hidden">
+            <span class="absolute top-2.5 left-2.5 z-20 px-2 py-0.5 text-[10px] uppercase tracking-wider font-semibold bg-white text-black">Live Web</span>
+            <iframe class="live-frame absolute inset-0 w-full h-full border-0 bg-white" src="https://spider-sense.streamlit.app/" title="Pratinjau SpiderSense" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <div class="flex items-center gap-1.5">
+                <span class="ds-micro uppercase px-2.5 py-1 bg-white text-black font-semibold">WEB</span>
+                <span class="ds-micro uppercase px-2.5 py-1 border border-white/40 text-white">IOT</span>
+              </div>
+              <span class="ds-micro text-gray-400">SIC BATCH 6</span>
+            </div>
+            <h3 class="font-cinzel font-bold text-xl uppercase tracking-wider mb-2">SpiderSense</h3>
+            <p class="ds-body text-gray-300 leading-relaxed mb-2">
+              Sistem pemantauan berbasis Internet of Things (IoT) yang terhubung ke antarmuka web real-time untuk membaca sensor, memvisualisasikan metrik, dan mengontrol perangkat. SpiderSense dirancang untuk membantu tunanetra dengan fitur membaca ekspresi, membaca teks, dan scanning objek.
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center justify-between mx-6 mb-6 pt-4 border-t border-white/10 text-xs text-gray-400 uppercase tracking-wider">
+          <span>IoT &bull; Realtime &bull; Dashboard</span>
+          <a href="https://spider-sense.streamlit.app/" target="_blank" rel="noopener noreferrer" class="text-white hover:opacity-70 transition-opacity cursor-pointer">Buka Situs &nearr;</a>
+        </div>
+      </article>
+      </div>
+    </div>
+
+    <!-- PANEL IOT -->
+    <div data-proj-panel="iot" class="hidden">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Dokumentasi Alat: DentifyKids -->
+      <article class="group border border-white/20 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex flex-col justify-between overflow-hidden">
+        <div>
+          <div class="relative w-full aspect-[3/4] bg-zinc-950 border-b border-white/15 overflow-hidden">
+            <span class="absolute top-2.5 left-2.5 z-20 px-2 py-0.5 text-[10px] uppercase tracking-wider font-semibold bg-white text-black">Dokumentasi Alat</span>
+            <img src="dentifykids.jpeg" alt="Dokumentasi prototipe sikat gigi pintar DentifyKids: modul Seeed Studio dan sensor IMU di dalam bodi sikat gigi" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="ds-micro uppercase px-2.5 py-1 bg-white text-black font-semibold">IOT HARDWARE</span>
+              <span class="ds-micro text-gray-400">2026</span>
+            </div>
+            <h3 class="font-cinzel font-bold text-xl uppercase tracking-wider mb-2">DentifyKids Device</h3>
+            <p class="ds-body text-gray-300 leading-relaxed mb-2">
+              Dokumentasi perangkat keras DentifyKids: modul Seeed Studio dan sensor IMU terpasang di dalam bodi sikat gigi pintar.
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center justify-between mx-6 mb-6 pt-4 border-t border-white/10 text-xs text-gray-400 uppercase tracking-wider">
+          <span>Hardware &bull; IMU &bull; Prototipe</span>
+        </div>
+      </article>
+
+      <!-- Dokumentasi Alat: Smart Hidroponik -->
+      <article class="group border border-white/20 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex flex-col justify-between overflow-hidden">
+        <div>
+          <div class="relative w-full aspect-[3/4] bg-zinc-950 border-b border-white/15 overflow-hidden">
+            <span class="absolute top-2.5 left-2.5 z-20 px-2 py-0.5 text-[10px] uppercase tracking-wider font-semibold bg-white text-black">Dokumentasi Alat</span>
+            <img src="smarthidroponik.jpeg" alt="Dokumentasi perangkat Smart Hidroponik: casing hitam berlogo Smart Hidroponik dengan layar LCD dan beberapa konektor kabel" class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="ds-micro uppercase px-2.5 py-1 bg-white text-black font-semibold">IOT HARDWARE</span>
+              <span class="ds-micro text-gray-400">SIC BATCH 5</span>
+            </div>
+            <h3 class="font-cinzel font-bold text-xl uppercase tracking-wider mb-2">Smart Hidroponik</h3>
+            <p class="ds-body text-gray-300 leading-relaxed mb-2">
+              Sistem pemantauan berbasis Internet of Things (IoT) yang terhubung ke antarmuka web real-time untuk membaca sensor, memvisualisasikan metrik, dan mengontrol perangkat.
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center justify-between mx-6 mb-6 pt-4 border-t border-white/10 text-xs text-gray-400 uppercase tracking-wider">
+          <span>Hardware &bull; Sensor &bull; Prototipe</span>
+        </div>
+      </article>
+
+      <!-- Dokumentasi Alat: SpiderSense -->
+      <article class="group border border-white/20 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex flex-col justify-between overflow-hidden">
+        <div>
+          <div class="relative w-full aspect-[3/4] bg-zinc-950 border-b border-white/15 overflow-hidden">
+            <span class="absolute top-2.5 left-2.5 z-20 px-2 py-0.5 text-[10px] uppercase tracking-wider font-semibold bg-white text-black">Dokumentasi Alat</span>
+            <img src="spidersense.jpeg" alt="Dokumentasi rangkaian SpiderSense tanpa casing: ESP32, sensor, baterai, breadboard, dan speaker" class="absolute inset-0 w-full h-full object-contain" loading="lazy" decoding="async" />
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="ds-micro uppercase px-2.5 py-1 bg-white text-black font-semibold">IOT HARDWARE</span>
+              <span class="ds-micro text-gray-400">SIC BATCH 6</span>
+            </div>
+            <h3 class="font-cinzel font-bold text-xl uppercase tracking-wider mb-2">SpiderSense</h3>
+            <p class="ds-body text-gray-300 leading-relaxed mb-2">
+              Sistem pemantauan berbasis Internet of Things (IoT) yang terhubung ke antarmuka web real-time untuk membaca sensor, memvisualisasikan metrik, dan mengontrol perangkat. SpiderSense dirancang untuk membantu tunanetra dengan fitur membaca ekspresi, membaca teks, dan scanning objek.
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center justify-between mx-6 mb-6 pt-4 border-t border-white/10 text-xs text-gray-400 uppercase tracking-wider">
+          <span>Hardware &bull; Sensor &bull; Prototipe</span>
+        </div>
+      </article>
+
+      <!-- Smart IoT Monitoring -->
+      <article class="group border border-white/15 bg-white/[0.02] hover:bg-white/[0.06] transition-colors p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-4">
+            <span class="ds-micro uppercase px-2.5 py-1 border border-white/40 text-white">IOT &amp; WEB SYSTEM</span>
+            <span class="ds-micro text-gray-400">SAMSUNG INNOVATION</span>
+          </div>
+          <h3 class="font-cinzel font-bold text-xl uppercase tracking-wider mb-2">Smart IoT Monitoring</h3>
+          <p class="ds-body text-gray-300 leading-relaxed mb-6">
+            Sistem pemantauan berbasis Internet of Things (IoT) yang terhubung ke antarmuka web *real-time* untuk membaca sensor, memvisualisasikan metrik, dan mengontrol perangkat.
+          </p>
+        </div>
+        <div class="flex items-center justify-between pt-4 border-t border-white/10 text-xs text-gray-400 uppercase tracking-wider">
+          <span>IoT &bull; Realtime DB &bull; Dashboard</span>
+          <span class="text-white group-hover:translate-x-1 transition-transform">&rarr;</span>
+        </div>
+      </article>
+      </div>
+    </div>
+
+    <!-- PANEL GAME -->
+    <div data-proj-panel="game" class="hidden">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Game: SCP Tower -->
+      <article class="group border border-white/15 bg-white/[0.02] hover:bg-white/[0.06] transition-colors p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-4">
+            <span class="ds-micro uppercase px-2.5 py-1 bg-white text-black font-semibold">ROBLOX GAME</span>
+            <span class="ds-micro text-gray-400">ROBLOX STUDIO</span>
+          </div>
+          <h3 class="font-cinzel font-bold text-xl uppercase tracking-wider mb-2">SCP Tower</h3>
+          <p class="ds-body text-gray-300 leading-relaxed mb-6">
+            Game obby vertikal bertema SCP: panjat menara kontainmen yang penuh rintangan sebelum entitas anomali menyusul, kumpulkan shard untuk membuka trail, title, dan coil, lalu capai puncak.
+          </p>
+        </div>
+        <div class="flex items-center justify-between pt-4 border-t border-white/10 text-xs text-gray-400 uppercase tracking-wider">
+          <span>Obby &bull; Survival &bull; Roblox</span>
+          <a href="https://www.roblox.com/games/104388817561582/Scp-Tower" target="_blank" rel="noopener noreferrer" class="text-white hover:opacity-70 transition-opacity cursor-pointer">Mainkan di Roblox &nearr;</a>
+        </div>
+      </article>
+
+      <!-- Game: Biodiversity Survival: Etnobotani -->
+      <article class="group border border-white/15 bg-white/[0.02] hover:bg-white/[0.06] transition-colors p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-4">
+            <span class="ds-micro uppercase px-2.5 py-1 bg-white text-black font-semibold">ROBLOX GAME</span>
+            <span class="ds-micro text-gray-400">ROBLOX STUDIO</span>
+          </div>
+          <h3 class="font-cinzel font-bold text-xl uppercase tracking-wider mb-2">Biodiversity Survival: Etnobotani</h3>
+          <p class="ds-body text-gray-300 leading-relaxed mb-6">
+            Game edukatif berbasis Game-Based Learning tentang keanekaragaman hayati dan etnobotani untuk siswa SMP, dengan satu gunung tiga zona dan fitur Biodiversity Scanner.
+          </p>
+        </div>
+        <div class="flex items-center justify-between pt-4 border-t border-white/10 text-xs text-gray-400 uppercase tracking-wider">
+          <span>Edukasi &bull; Etnobotani &bull; Roblox</span>
+          <a href="https://www.roblox.com/games/138702845650665/Biodiversity-Survival-Etnobotani" target="_blank" rel="noopener noreferrer" class="text-white hover:opacity-70 transition-opacity cursor-pointer">Mainkan di Roblox &nearr;</a>
+        </div>
+      </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: PENGALAMAN (EXPERIENCE) -->
+<section id="experience-section" class="relative z-20 py-24" style="padding-inline:var(--pad-x)">
+  <div class="max-w-6xl mx-auto w-full bg-black/75 backdrop-blur-md border border-white/15 p-8 md:p-14 lg:p-16 relative">
+    <span data-corner="tl" class="absolute top-0 left-0"></span>
+    <span data-corner="tr" class="absolute top-0 right-0"></span>
+    <span data-corner="bl" class="absolute bottom-0 left-0"></span>
+    <span data-corner="br" class="absolute bottom-0 right-0"></span>
+
+    <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-white/15 pb-8 mb-10 gap-6">
+      <div>
+        <p class="ds-micro uppercase text-gray-400 mb-2">03 // REKAM JEJAK &amp; PROGRAM</p>
+        <h2 class="font-cinzel font-black uppercase text-3xl md:text-5xl tracking-wider">
+          <span class="bg-white text-black px-3 py-0.5">Pengalaman</span>
+        </h2>
+      </div>
+      <p class="ds-micro uppercase text-gray-300 tracking-widest">
+        Kompetisi, Bootcamp &amp; Eksplorasi Teknis
+      </p>
+    </div>
+
+    <div class="space-y-6">
+      <!-- Item 1 -->
+      <!-- <div class="border border-white/15 p-6 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="space-y-1">
+          <span class="ds-micro uppercase text-gray-400">2026 // KOMPETISI INOVASI</span>
+          <h3 class="font-cinzel font-bold text-lg md:text-xl uppercase tracking-wider">BPJS Kesehatan Healthkathon 2026</h3>
+          <p class="ds-body text-gray-300">Berpartisipasi dalam perancangan dan pengembangan solusi teknologi di bidang layanan kesehatan digital.</p>
+        </div>
+        <span class="self-start md:self-center shrink-0 px-3 py-1 text-xs uppercase tracking-widest bg-white text-black font-semibold">Partisipan</span>
+      </div> -->
+
+      <!-- Item 2 -->
+      <!-- <div class="border border-white/15 p-6 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="space-y-1">
+          <span class="ds-micro uppercase text-gray-400">PROGRAM INKUBASI TEKNOLOGI</span>
+          <h3 class="font-cinzel font-bold text-lg md:text-xl uppercase tracking-wider">Samsung Innovation Campus Batch 6</h3>
+          <p class="ds-body text-gray-300">Pelatihan intensif dan kolaborasi proyek teknis yang berfokus pada Internet of Things (IoT), pemrograman Python, dan Web Development.</p>
+        </div>
+        <span class="self-start md:self-center shrink-0 px-3 py-1 text-xs uppercase tracking-widest border border-white/30 text-gray-200">IoT &amp; Web</span>
+      </div> -->
+
+      <!-- Item 3 -->
+      <!-- <div class="border border-white/15 p-6 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="space-y-1">
+          <span class="ds-micro uppercase text-gray-400">CLOUD &amp; DATA ANALYTICS</span>
+          <h3 class="font-cinzel font-bold text-lg md:text-xl uppercase tracking-wider">Google Cloud Arcade &amp; DQLab Mini Bootcamp</h3>
+          <p class="ds-body text-gray-300">Praktik langsung pengelolaan infrastruktur cloud, eksplorasi AI generatif, serta penguasaan dasar-dasar analisis data pada Batch 11 DQLab.</p>
+        </div>
+        <span class="self-start md:self-center shrink-0 px-3 py-1 text-xs uppercase tracking-widest border border-white/30 text-gray-200">Cloud &amp; Data</span>
+      </div> -->
+
+      <!-- Item 4
+      <div class="border border-white/15 p-6 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="space-y-1">
+          <span class="ds-micro uppercase text-gray-400">CYBERSECURITY &amp; COMPETITIVE PROGRAMMING</span>
+          <h3 class="font-cinzel font-bold text-lg md:text-xl uppercase tracking-wider">Hacktrace Ranges, Skilvul &amp; Codewars</h3>
+          <p class="ds-body text-gray-300">Mengasah logika algoritma pemrograman Python serta praktik keamanan siber ofensif dan eksploitasi sistem secara terukur.</p>
+        </div>
+        <span class="self-start md:self-center shrink-0 px-3 py-1 text-xs uppercase tracking-widest border border-white/30 text-gray-200">Cyber &amp; Code</span>
+      </div> -->
+
+      <!-- Item 5 -->
+      <div class="border border-white/15 p-6 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="space-y-1">
+          <span class="ds-micro uppercase text-gray-400">PROGRAM INKUBASI TEKNOLOGI</span>
+          <h3 class="font-cinzel font-bold text-lg md:text-xl uppercase tracking-wider">Semifinalis Samsung Innovation Campus Batch 5</h3>
+          <p class="ds-body text-gray-300">Lolos hingga tahap semifinal dalam program Samsung Innovation Campus Batch 5.</p>
+        </div>
+        <span class="self-start md:self-center shrink-0 px-3 py-1 text-xs uppercase tracking-widest bg-white text-black font-semibold">Semifinalis</span>
+      </div>
+
+      <!-- Item 6 -->
+      <div class="border border-white/15 p-6 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="space-y-1">
+          <span class="ds-micro uppercase text-gray-400">PROGRAM INKUBASI TEKNOLOGI</span>
+          <h3 class="font-cinzel font-bold text-lg md:text-xl uppercase tracking-wider">Finalis Samsung Innovation Campus Batch 6</h3>
+          <p class="ds-body text-gray-300">Lolos hingga tahap final dalam program Samsung Innovation Campus Batch 6.</p>
+        </div>
+        <span class="self-start md:self-center shrink-0 px-3 py-1 text-xs uppercase tracking-widest bg-white text-black font-semibold">Finalis</span>
+      </div>
+
+      <!-- Item 7 -->
+      <div class="border border-white/15 p-6 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="space-y-1">
+          <span class="ds-micro uppercase text-gray-400">LOMBA KOMPETENSI SISWA</span>
+          <h3 class="font-cinzel font-bold text-lg md:text-xl uppercase tracking-wider">Juara 2 LKS Kota Surakarta</h3>
+          <p class="ds-body text-gray-300">Meraih juara 2 pada Lomba Kompetensi Siswa (LKS) tingkat Kota Surakarta.</p>
+        </div>
+        <span class="self-start md:self-center shrink-0 px-3 py-1 text-xs uppercase tracking-widest bg-white text-black font-semibold">Juara 2</span>
+      </div>
+
+      <!-- Item 8 -->
+      <div class="border border-white/15 p-6 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="space-y-1">
+          <span class="ds-micro uppercase text-gray-400">GAME DEVELOPMENT</span>
+          <h3 class="font-cinzel font-bold text-lg md:text-xl uppercase tracking-wider">Developer Game Roblox</h3>
+          <p class="ds-body text-gray-300">Mengembangkan game di Roblox Studio menggunakan bahasa pemrograman Lua/Luau.</p>
+        </div>
+        <span class="self-start md:self-center shrink-0 px-3 py-1 text-xs uppercase tracking-widest border border-white/30 text-gray-200">Game Dev</span>
+      </div>
+
+      <!-- Item 9 -->
+      <div class="border border-white/15 p-6 bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="space-y-1">
+          <span class="ds-micro uppercase text-gray-400">MAGANG</span>
+          <h3 class="font-cinzel font-bold text-lg md:text-xl uppercase tracking-wider">Magang di Enuma Technology</h3>
+          <p class="ds-body text-gray-300">Menjalani program magang di Enuma Technology.</p>
+        </div>
+        <span class="self-start md:self-center shrink-0 px-3 py-1 text-xs uppercase tracking-widest border border-white/30 text-gray-200">Magang</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: KONTAK (CONTACT) -->
+<section id="contact-section" class="relative z-20 py-24" style="padding-inline:var(--pad-x)">
+  <div class="max-w-6xl mx-auto w-full bg-black/75 backdrop-blur-md border border-white/15 p-8 md:p-14 lg:p-16 relative">
+    <span data-corner="tl" class="absolute top-0 left-0"></span>
+    <span data-corner="tr" class="absolute top-0 right-0"></span>
+    <span data-corner="bl" class="absolute bottom-0 left-0"></span>
+    <span data-corner="br" class="absolute bottom-0 right-0"></span>
+
+    <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-white/15 pb-8 mb-10 gap-6">
+      <div>
+        
+        <h2 class="font-cinzel font-black uppercase text-3xl md:text-5xl tracking-wider">
+          <span class="bg-white text-black px-3 py-0.5">Kontak</span>
+        </h2>
+      </div>
+      <p class="ds-micro uppercase text-gray-300 tracking-widest">
+        Siap Berkolaborasi untuk Proyek Baru
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+      <!-- Info Kontak -->
+      <div class="lg:col-span-5 space-y-6">
+        <p class="ds-body text-gray-300 leading-relaxed">
+          Tertarik untuk berdiskusi seputar pengembangan web, kecerdasan buatan (AI), proyek IoT, atau kolaborasi kompetisi teknologi? Jangan ragu untuk menghubungi saya.
+        </p>
+
+        <div class="space-y-4 pt-2">
+          <div class="border border-white/15 p-4 bg-white/[0.02]">
+            <p class="ds-micro uppercase text-gray-400 mb-1">DOMISILI</p>
+            <p class="font-semibold uppercase text-sm tracking-wider">Surakarta, Jawa Tengah, Indonesia</p>
+          </div>
+          <div class="border border-white/15 p-4 bg-white/[0.02]">
+            <p class="ds-micro uppercase text-gray-400 mb-1">DOMAIN &amp; PORTOFOLIO</p>
+            <!-- <p class="font-semibold uppercase text-sm tracking-wider">aiprojectplanner.space</p> -->
+          </div>
+          <div class="border border-white/15 p-4 bg-white/[0.02]">
+            <p class="ds-micro uppercase text-gray-400 mb-1">JEJARING TEKNIS</p>
+            <p class="font-semibold uppercase text-sm tracking-wider">GitHub &bull; Hugging Face &bull; LinkedIn</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Kirim Pesan -->
+      <form id="contact-form" class="lg:col-span-7 space-y-4 border-t lg:border-t-0 lg:border-l border-white/15 pt-8 lg:pt-0 lg:pl-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block ds-micro uppercase text-gray-400 mb-2" for="cname">Nama Lengkap</label>
+            <input id="cname" type="text" required placeholder="Nama Anda" class="w-full bg-white/[0.03] border border-white/20 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white transition-colors" />
+          </div>
+          <div>
+            <label class="block ds-micro uppercase text-gray-400 mb-2" for="cemail">Alamat Email</label>
+            <input id="cemail" type="email" required placeholder="nama@email.com" class="w-full bg-white/[0.03] border border-white/20 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white transition-colors" />
+          </div>
+        </div>
+        <div>
+          <label class="block ds-micro uppercase text-gray-400 mb-2" for="csubject">Subjek</label>
+          <input id="csubject" type="text" required placeholder="Kolaborasi Proyek / Diskusi Teknis" class="w-full bg-white/[0.03] border border-white/20 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white transition-colors" />
+        </div>
+        <div>
+          <label class="block ds-micro uppercase text-gray-400 mb-2" for="cmsg">Pesan</label>
+          <textarea id="cmsg" rows="4" required placeholder="Tuliskan pesan atau ide proyek Anda..." class="w-full bg-white/[0.03] border border-white/20 px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-white transition-colors"></textarea>
+        </div>
+        <button type="submit" class="inline-flex items-center uppercase bg-white text-black font-semibold text-xs tracking-widest px-6 py-3.5 hover:bg-gray-200 transition-colors cursor-pointer">
+          KIRIM PESAN
+          <svg class="ic ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </form>
+    </div>
+
+    <div class="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-gray-400 ds-micro uppercase">
+      <span>Dew &copy; 2026 — Danendra Evan Wicaksono</span>
+      <button id="backtotop" class="hover:text-white transition-colors cursor-pointer">KEMBALI KE ATAS &uarr;</button>
+    </div>
+  </div>
+</section>
+
+<!-- Toast -->
+<div id="toast" class="hidden fixed top-4 right-4 z-50 items-center gap-2 bg-black text-white border border-white/20 rounded-md px-4 py-3" style="font-size:var(--body)" role="status">
+  <svg class="ic text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+  <span id="toasttext"></span>
+</div>
+
+<script>
+(function () {
+  var toastTimer;
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ---------- Static SVGs ---------- */
+  var CORNERS = { tl: 'M0 11.5V0.5H11.5', tr: 'M0.5 0.5H11.5V11.5', bl: 'M0 0.5V11.5H11.5', br: 'M0.5 11.5H11.5V0.5' };
+  document.querySelectorAll('[data-corner]').forEach(function (el) {
+    el.className += ' inline-flex';
+    el.innerHTML = '<svg class="corner" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="' + CORNERS[el.dataset.corner] + '"/></svg>';
+  });
+
+  $('globe').innerHTML = '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true" style="width:var(--globe);height:var(--globe)">' +
+    '<circle cx="32" cy="32" r="28"/><line x1="4" y1="32" x2="60" y2="32"/>' +
+    '<ellipse cx="32" cy="20" rx="25.3" ry="5"/><ellipse cx="32" cy="44" rx="25.3" ry="5"/>' +
+    '<line x1="32" y1="4" x2="32" y2="60"/><ellipse cx="32" cy="32" rx="11" ry="28"/><ellipse cx="32" cy="32" rx="20" ry="28"/></svg>';
+
+  /* ---------- Toast ---------- */
+  function showToast(msg) {
+    $('toasttext').textContent = msg;
+    $('toast').classList.remove('hidden');
+    $('toast').classList.add('flex');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () {
+      $('toast').classList.add('hidden');
+      $('toast').classList.remove('flex');
+    }, 3000);
+  }
+
+  /* ---------- Events ---------- */
+  $('logo').addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  $('navhome').addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  $('backtotop').addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  $('contact-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    showToast('Pesan Anda berhasil dikirim!');
+    e.target.reset();
+  });
+
+  /* ---------- Tab Proyek: Web / IoT ---------- */
+  var projTabs = document.querySelectorAll('[data-proj-tab]');
+  var projPanels = document.querySelectorAll('[data-proj-panel]');
+  projTabs.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var target = btn.getAttribute('data-proj-tab');
+      projTabs.forEach(function (b) {
+        b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+      });
+      projPanels.forEach(function (p) {
+        p.classList.toggle('hidden', p.getAttribute('data-proj-panel') !== target);
+      });
+    });
+  });
+
+  /* ---------- Parallax grid ---------- */
+  var cellSize = function () { return Math.round(Math.min(64, Math.max(36, window.innerWidth * 0.028))); };
+  var pattern = $('gp'), gpath = $('gpath'), gridEl = $('grid');
+  function setCell() {
+    var c = cellSize();
+    pattern.setAttribute('width', c);
+    pattern.setAttribute('height', c);
+    gpath.setAttribute('d', 'M ' + c + ' 0 L 0 0 0 ' + c);
+  }
+  setCell();
+  window.addEventListener('resize', setCell);
+
+  var mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+  var smooth = { x: mouse.x, y: mouse.y };
+  var off = { x: 0, y: 0 };
+  window.addEventListener('mousemove', function (e) { mouse.x = e.clientX; mouse.y = e.clientY; });
+
+  function tick() {
+    smooth.x += (mouse.x - smooth.x) * 0.1;
+    smooth.y += (mouse.y - smooth.y) * 0.1;
+    var rect = gridEl.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      var cx = (smooth.x - rect.left) / rect.width - 0.5;
+      var cy = (smooth.y - rect.top) / rect.height - 0.5;
+      off.x += (cx * 16 - off.x) * 0.06;
+      off.y += (cy * 16 - off.y) * 0.06;
+      pattern.setAttribute('x', off.x);
+      pattern.setAttribute('y', off.y);
+    }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>
